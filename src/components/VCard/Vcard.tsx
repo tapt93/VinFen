@@ -11,19 +11,20 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type Props = {
-  footer: React.ReactNode;
-  data: any;
-  isBorder?: boolean;
+    footer: React.ReactNode;
+    img: string;
+    title: string;
+    isSmallSize: boolean;
 };
 
-const VCard = ({data, footer, isBorder}: Props) => {
+const VCard = ({ footer, img, title, isSmallSize }: Props) => {
   return (
     <Pressable style={[styles.cardItem]}>
       <View>
-        {data.img ? (
+        {img ? (
           <Image
-            style={[styles.cardImg, isBorder ? styles.cardImgBorder : null]}
-            source={{uri: data.img}}></Image>
+            style={[styles.cardImg]}
+            source={{uri: img}}></Image>
         ) : (
           <Center w="100%">
             <VStack
@@ -46,7 +47,7 @@ const VCard = ({data, footer, isBorder}: Props) => {
           </Center>
         )}
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>{data.title}</Text>
+          <Text style={styles.cardTitle}>{title}</Text>
           <View style={styles.cardBottom}>{footer}</View>
         </View>
       </View>
@@ -65,9 +66,7 @@ const styles = StyleSheet.create({
   cardImg: {
     flex: 1,
     height: 150,
-    borderRadius: 8,
-  },
-  cardImgBorder: {
+    
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },

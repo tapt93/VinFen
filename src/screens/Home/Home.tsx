@@ -1,15 +1,11 @@
-import { VCard } from 'components';
+import {VCard} from 'components';
 import VCardNoBorder from 'components/VCard/VCardNoBorder';
-import { ScrollView } from 'native-base';
+import {ScrollView} from 'native-base';
 import React from 'react';
-import {
-  Image,
-  Pressable, StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
@@ -31,17 +27,22 @@ const DATA = [
     title: 'Siêu phẩm thời trang từ Sơn Tùng M-TP',
     img: 'https://cdn-www.vinid.net/0347db01-dhc-539x303.jpg',
   },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Siêu phẩm thời trang từ Sơn Tùng M-TP',
+    img: 'https://cdn-www.vinid.net/0347db01-dhc-539x303.jpg',
+  },
 ];
 
-const Item = ({ title, img }: { title: string; img: string }) => (
+const Item = ({title, img}: {title: string; img: string}) => (
   <View>
     <Text>{title}</Text>
-    <Image style={styles.img} source={{ uri: img }}></Image>
+    <Image style={styles.img} source={{uri: img}}></Image>
   </View>
 );
 
 const Home = () => {
-  const renderItem = ({ item }: any) => (
+  const renderItem = ({item}: any) => (
     <Item title={item.title} img={item.img} />
   );
   return (
@@ -140,6 +141,30 @@ const Home = () => {
             <Text>Voucher</Text>
           </View>
         </View>
+        <ScrollView horizontal={true}>
+          <View style={styles.flashSales}>
+            <View style={styles.adFlashSale}>
+              <View style={styles.cardHeader}>
+                <AntDesign name="tagso" size={20} style={styles.iconTag}></AntDesign>
+                <Text>VinId Giá sốc</Text>
+              </View>
+              <View>
+                <Text style={styles.textFlashSale}>
+                  Ưu đãi ngập tràn cùng cô vàn sản phẩm giá tốt từ VinID
+                </Text>
+              </View>
+            </View>
+            {/* <View > */}
+            {DATA.map(({img, title}, index) => {
+              return (
+                <View style={styles.p15} key={index}>
+                  <VCard img={img} title={title} footer={<Text>abc</Text>} isSmallSize={true}/>
+                </View>
+              );
+            })}
+            {/* </View> */}
+          </View>
+        </ScrollView>
       </View>
 
       <View style={styles.hotDeal}>
@@ -148,15 +173,10 @@ const Home = () => {
         </View>
 
         <View style={styles.containerHotDeal}>
-          {DATA.map(({ img, title }, index) => {
+          {DATA.map(({img, title}, index) => {
             return (
-              <View style={styles.p5}>
-                <VCardNoBorder
-                  key={index}
-                  img={img}
-                  title={title}
-                  footer={<Text>abc</Text>}
-                />
+              <View style={styles.p5} key={index}>
+                <VCard img={img} title={title} footer={<Text>abc</Text>} isSmallSize={false}/>
               </View>
             );
           })}
@@ -180,7 +200,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
   },
-  actionBar: { flexDirection: 'row' },
+  actionBar: {flexDirection: 'row'},
   greeting: {
     marginBottom: 20,
   },
@@ -234,17 +254,47 @@ const styles = StyleSheet.create({
   },
   hotDeal: {
     marginTop: 20,
-    width: "100%"
+    width: '100%',
   },
   containerHotDeal: {
     marginTop: 20,
-    width: "100%",
+    width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   p5: {
     padding: 5,
-    width: "50%"
+    width: '50%',
+  },
+  flashSales: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 20,
+  },
+  p15: {
+    padding: 5,
+    width: '12%',
+  },
+  adFlashSale: {
+    width: '12%',
+    backgroundColor: '#dc2323',
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: '#c5c5c5',
+    marginBottom: 10,
+    padding:5
+  },
+  textFlashSale: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  cardHeader:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  iconTag: {
+    color: 'yellow',
   }
 });
