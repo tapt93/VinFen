@@ -12,9 +12,7 @@ const Membership = () => {
           <IconEntypo name="dots-three-horizontal" size={20} color="white" />
         </TouchableOpacity>
       </View>
-      <ScrollView style={{ backgroundColor: 'white', borderTopLeftRadius: 20, borderTopRightRadius: 20 }}>
-        <MainContent />
-      </ScrollView>
+      <MainContent />
     </View>
   )
 }
@@ -24,7 +22,7 @@ export default Membership
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#26355C",
-    height: '100%'
+    flex: 1
   },
   header: {
     justifyContent: 'space-between',

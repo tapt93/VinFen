@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Brand = () => {
+const All = () => {
   return (
-    <View style={{backgroundColor:'red', flex: 1}}>
-      <Text>Trademark</Text>
+    <View>
+      <Text>All</Text>
     </View>
   )
 }
 
-export default Brand
+export default All
 
 const styles = StyleSheet.create({})
