@@ -1,4 +1,5 @@
 import {
+  Dimensions,
   Image,
   Pressable,
   SafeAreaView,
@@ -7,7 +8,7 @@ import {
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import {VButton} from 'components';
+import {VButton, VCard} from 'components';
 import Carousel from 'react-native-snap-carousel';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -149,30 +150,16 @@ const Home = () => {
           <Text style={[styles.text, styles.fs18]}> Hot Deal </Text>
         </View>
 
-        <Pressable style={styles.card}>
+        <View style={styles.containerHotDeal}>
           {DATA.map((item, index) => {
             return (
-              <View key={index} style={styles.cardItem}>
-                <Image
-                  style={[styles.cardImg]}
-                  source={{uri: item.img}}></Image>
-                <View style={styles.cardContent}>
-                  <Text style={styles.cardTitle}>{item.title}</Text>
-                  <View style={styles.cardBottom}>
-                  <Ionicons
-                    name="cart-outline"
-                    size={SIZE_ICON}
-                    color="white"
-                    style={[styles.mgr5, styles.iconStyle]}
-                  />
-                  <Text style={[styles.subTitle]}>Mua ngay</Text>
-                  </View>
-                  
-                </View>
+              <View style={styles.p5}>
+                <VCard key={index} data={item} footer={<Text>abc</Text>} isBorder={true} />
               </View>
+              
             );
           })}
-        </Pressable>
+        </View>
       </View>
     </ScrollView>
   );
@@ -245,50 +232,18 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   hotDeal: {
-    marginTop: 20
-  },
-  card: {
     marginTop: 20,
+    width: "100%"
+  },
+  containerHotDeal: {
+    marginTop: 20,
+    width: "100%",
     flexDirection: 'row',
     flexWrap: 'wrap',
-    maxWidth: '100%',
     justifyContent: 'space-between',
   },
-  cardImg: {
-    // width: 150,
-    height: 150,
-    borderRadius: 8,
-  },
-  cardItem: {
-    maxWidth: '50%',
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: '#c5c5c5',
-    marginBottom: 10,
-  },
-  cardContent: {
-    // marginTop: 5,
-    padding: 5
-  },
-  cardBottom: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  iconStyle:{
-    borderWidth: 1,
-    borderRadius: 15,
-    padding: 2,
-    alignSelf: 'center',
-    backgroundColor: '#dc2323',
-    borderColor: '#dc2323'
-  },
-  cardTitle: {
-    fontSize: 13,
-    fontWeight: '500',
-    color: '#22313f'
-  },
-  subTitle: {
-    fontSize: 11,
-    color: '#3c3d48'
+  p5:{
+    padding: 5,
+    width: "50%"
   }
 });
