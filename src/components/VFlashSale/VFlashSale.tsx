@@ -1,11 +1,11 @@
 import VCard from 'components/VCard/Vcard';
-import {IProduction} from 'models/Production';
+import {IProduct} from 'models/Production';
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 type Props = {
-  arrFlashSale: IProduction[];
+  arrFlashSale: IProduct[];
 };
 
 const VFlashSale = ({arrFlashSale}: Props) => {

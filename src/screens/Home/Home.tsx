@@ -13,11 +13,11 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import {IProduction} from 'models/Production';
+import {IProduct} from 'models/Production';
 
 const SIZE_ICON = 15;
 
-const DATA: IProduction[] = [
+const listProduct: IProduct[] = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
     title: 'Siêu phẩm thời trang từ Sơn Tùng M-TP',
@@ -40,7 +40,32 @@ const DATA: IProduction[] = [
   },
 ];
 
-const Home = () => {
+const listService = [
+  {
+    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    title: 'Voucher',
+    img: 'https://cdn-www.vinid.net/43f90829-voucher-new.png',
+  },
+  {
+    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    title: 'WinMart',
+    img: 'https://cdn-www.vinid.net/79ae887d-muasam-new.png',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'VinID',
+    img: 'https://cdn-www.vinid.net/ed75bc1c-diemvinid-new.png',
+  },
+  {
+    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    title: 'Housing',
+    img: 'https://cdn-www.vinid.net/21fb7033-hoadon-new.png',
+  },
+];
+
+const Home = ({navigation}: any) => {
+  console.log(navigation);
+
   return (
     <SafeAreaView style={styles.containerSafeAreaView}>
       <ScrollView style={styles.container}>
@@ -110,44 +135,21 @@ const Home = () => {
             Service
           </TitleCategory>
           <View style={styles.serviceContent}>
-            <View style={styles.service}>
-              <Image
-                source={{
-                  uri: 'https://cdn-www.vinid.net/69490176-vidientu-new.png',
-                }}
-                style={styles.imgService}
-              />
-              <Text>Voucher</Text>
-            </View>
-            <View style={styles.service}>
-              <Image
-                source={{
-                  uri: 'https://cdn-www.vinid.net/69490176-vidientu-new.png',
-                }}
-                style={styles.imgService}
-              />
-              <Text>Voucher</Text>
-            </View>
-            <View style={styles.service}>
-              <Image
-                source={{
-                  uri: 'https://cdn-www.vinid.net/69490176-vidientu-new.png',
-                }}
-                style={styles.imgService}
-              />
-              <Text>Voucher</Text>
-            </View>
-            <View style={styles.service}>
-              <Image
-                source={{
-                  uri: 'https://cdn-www.vinid.net/69490176-vidientu-new.png',
-                }}
-                style={styles.imgService}
-              />
-              <Text>Voucher</Text>
-            </View>
+            {listService.map(({img, title}, index) => {
+              return (
+                <View key={index} style={styles.serviceItem}>
+                  <Image
+                    source={{
+                      uri: img,
+                    }}
+                    style={styles.imgService}
+                  />
+                  <Text>{title}</Text>
+                </View>
+              );
+            })}
           </View>
-          <VFlashSale arrFlashSale={DATA} />
+          <VFlashSale arrFlashSale={listProduct} />
         </View>
 
         {/* Hot Deal session */}
@@ -155,13 +157,21 @@ const Home = () => {
           <TitleCategory footer={null}>Hot Deal</TitleCategory>
 
           <View style={styles.containerHotDeal}>
-            {DATA.map(({img, title}, index) => {
+            {listProduct.map(({img, title}, index) => {
               return (
                 <View style={styles.p5} key={index}>
                   <VCard
                     img={img}
                     title={title}
-                    footer={<Text>abc</Text>}
+                    footer={
+                      <View style={styles.cardFooter}>
+                        <MaterialCommunityIcons
+                          name="star-outline"
+                          size={10}
+                        />
+                        <Text>Mua ngay</Text>
+                      </View>
+                    }
                     isFlashSale={false}
                   />
                 </View>
@@ -216,9 +226,7 @@ const styles = StyleSheet.create({
   mgr5: {
     marginRight: 5,
   },
-  service: {
-    marginTop: 20,
-  },
+
   imgService: {
     width: 45,
     height: 36,
@@ -228,6 +236,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: 10,
     paddingLeft: 10,
+  },
+  service: {
+    marginTop: 20,
+  },
+  serviceItem: {
+    marginTop: 20,
+    alignItems: 'center',
   },
 
   hotDeal: {
@@ -252,4 +267,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#22313f',
   },
+  cardFooter:{
+    flexDirection: 'row',
+  }
 });
