@@ -1,29 +1,25 @@
-import {RADIUS} from 'constants/styles';
 import {Center, Skeleton, VStack} from 'native-base';
 import React from 'react';
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
 type Props = {
   footer: React.ReactNode;
-  data: any;
-  isBorder?: boolean;
+  img: string;
+  title: string;
+  isFlashSale: boolean;
 };
 
-const VCard = ({data, footer, isBorder}: Props) => {
+const VCard = ({footer, img, title, isFlashSale}: Props) => {
   return (
-    <Pressable style={[styles.cardItem]}>
-      <View>
-        {data.img ? (
-          <Image
-            style={[styles.cardImg, isBorder ? styles.cardImgBorder : null]}
-            source={{uri: data.img}}></Image>
+    <Pressable style={[styles.card]}>
+      <View style={[styles.cardContainer]}>
+        {isFlashSale ? (
+          <View style={[styles.flashSale]}>
+            <Text style={{color: 'white'}}>02:07:00</Text>
+          </View>
+        ) : null}
+        {img ? (
+          <Image style={[styles.cardImg]} source={{uri: img}}></Image>
         ) : (
           <Center w="100%">
             <VStack
@@ -46,7 +42,7 @@ const VCard = ({data, footer, isBorder}: Props) => {
           </Center>
         )}
         <View style={styles.cardContent}>
-          <Text style={styles.cardTitle}>{data.title}</Text>
+          <Text style={styles.cardTitle}>{title}</Text>
           <View style={styles.cardBottom}>{footer}</View>
         </View>
       </View>
@@ -55,23 +51,33 @@ const VCard = ({data, footer, isBorder}: Props) => {
 };
 
 const styles = StyleSheet.create({
-  cardItem: {
+  card: {
     width: '100%',
     borderWidth: 1,
     borderRadius: 8,
     borderColor: '#c5c5c5',
-    marginBottom: 10,
+  },
+  cardContainer: {
+    position: 'relative',
+  },
+  flashSale: {
+    position: 'absolute',
+    top: 10,
+    borderWidth: 1,
+    zIndex: 1,
+    backgroundColor: '#030435',
+    padding: 2,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
   },
   cardImg: {
     flex: 1,
     height: 150,
-    borderRadius: 8,
-  },
-  cardImgBorder: {
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
   },
-
   cardContent: {
     padding: 5,
   },

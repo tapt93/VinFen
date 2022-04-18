@@ -1,6 +1,6 @@
 import ImageSkeleton from 'components/ImageSkeleton/ImageSkeleton';
 import React from 'react';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 
 type Props = {
   footer: React.ReactNode;
@@ -8,16 +8,17 @@ type Props = {
   title: string;
 };
 
-const VCardNoBorder = ({ footer, img, title }: Props) => (
+const VCardNoBorder = ({footer, img, title}: Props) => (
   <Pressable style={styles.borderRadius}>
-    {img ? <Image
-      style={[styles.cardImg, styles.borderRadius]}
-      resizeMode="cover"
-      source={{ uri: img }}
-    />
-      :
+    {img ? (
+      <Image
+        style={[styles.cardImg, styles.borderRadius]}
+        resizeMode="cover"
+        source={{uri: img}}
+      />
+    ) : (
       <ImageSkeleton />
-    }
+    )}
     <View style={styles.cardContent}>
       <Text style={styles.cardTitle}>{title}</Text>
       <View style={styles.cardBottom}>{footer}</View>
@@ -25,7 +26,7 @@ const VCardNoBorder = ({ footer, img, title }: Props) => (
   </Pressable>
 );
 
-export default VCardNoBorder
+export default VCardNoBorder;
 
 const styles = StyleSheet.create({
   borderRadius: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   cardImg: {
     width: '100%',
     height: undefined,
-    aspectRatio: 1 / 1
+    aspectRatio: 1 / 1,
   },
   cardContent: {
     paddingVertical: 5,
@@ -47,5 +48,5 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: '#22313f',
-  }
+  },
 });
