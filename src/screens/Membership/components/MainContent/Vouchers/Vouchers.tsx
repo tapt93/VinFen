@@ -52,7 +52,7 @@ export default Vouchers
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    // flex: 1
   },
   categories: {
     flexDirection: 'row',

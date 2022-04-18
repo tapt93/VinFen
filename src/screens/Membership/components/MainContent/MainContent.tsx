@@ -29,8 +29,6 @@ const styles = StyleSheet.create({
   tabContainer: {
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    borderBottomWidth: 1,
-    borderColor: '#ccc'
   },
   tabBarLabel: {
     textTransform: "none",
