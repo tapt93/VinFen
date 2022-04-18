@@ -28,8 +28,6 @@ const VCardNoBorder = ({ footer, img, title }: Props) => (
 export default VCardNoBorder
 
 const styles = StyleSheet.create({
-  cardItem: {
-  },
   borderRadius: {
     borderRadius: 15,
   },
@@ -43,7 +41,7 @@ const styles = StyleSheet.create({
   },
   cardBottom: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   cardTitle: {
     fontSize: 13,
